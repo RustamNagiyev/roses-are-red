@@ -1,0 +1,6 @@
+{
+  "name": "Roses Are Red Baku | Haute Floristique",
+  "description": "Bakıda yüksək floristika sənəti, elit çiçək kompozisiyaları, heykəltəraş vazalar və dəbdəbəli məxmər qutular. 24/7 ekspress çatdırılma.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

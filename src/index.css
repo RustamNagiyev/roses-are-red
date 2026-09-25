@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #1B0D11;
+    color: #FDF9F3;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #15080B;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #89182C;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+  }
+}
+
+.font-display-hero {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-headline-lg {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-headline-md {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-headline-sm {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-title-editorial {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-price-editorial {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-body-lg,
+.font-body-md,
+.font-body-sm,
+.font-label-caps-lg,
+.font-label-caps-sm {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-editorial-garamond {
+  font-family: 'EB Garamond', serif;
+}
+
+.font-mono-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+}
