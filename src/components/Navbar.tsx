@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 
 interface NavbarProps {
-  currentPage: 'home' | 'catalog' | 'product';
-  onNavigate: (page: 'home' | 'catalog') => void;
+  currentPage: 'home' | 'catalog' | 'product' | 'about' | 'contact';
+  onNavigate: (page: 'home' | 'catalog' | 'about' | 'contact') => void;
   cartCount: number;
   cartTotal: number;
   wishlistCount: number;
   onOpenCart: () => void;
   onOpenWishlist: () => void;
   onOpenSearch: () => void;
-  onOpenContact: () => void;
-  onOpenAbout: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -22,14 +20,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCart,
   onOpenWishlist,
   onOpenSearch,
-  onOpenContact,
-  onOpenAbout,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 border-b border-[#D4AF37]/20 shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
-      {/* Top Banner with updated 0505300369 */}
+      {/* Top Banner with phone 050 530 03 69 */}
       <div className="w-full bg-[#15080B]/95 backdrop-blur-md px-4 py-2 border-b border-[#D4AF37]/15">
         <div className="max-w-[1440px] mx-auto flex items-center justify-center text-center">
           <p className="font-label-caps-sm text-[10px] sm:text-[11px] text-[#EADFD3] uppercase tracking-[0.22em] font-medium">
@@ -88,14 +84,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               Gəlin Buketləri
             </button>
             <button
-              onClick={onOpenAbout}
-              className="font-label-caps-sm text-[11px] uppercase tracking-[0.2em] text-[#EADFD3] hover:text-[#D4AF37] transition-colors py-1 cursor-pointer"
+              onClick={() => onNavigate('about')}
+              className={`font-label-caps-sm text-[11px] uppercase tracking-[0.2em] transition-colors py-1 cursor-pointer ${
+                currentPage === 'about'
+                  ? 'text-[#D4AF37] font-semibold border-b border-[#D4AF37] pb-1'
+                  : 'text-[#EADFD3] hover:text-[#D4AF37]'
+              }`}
             >
               Haqqımızda
             </button>
             <button
-              onClick={onOpenContact}
-              className="font-label-caps-sm text-[11px] uppercase tracking-[0.2em] text-[#EADFD3] hover:text-[#D4AF37] transition-colors py-1 cursor-pointer"
+              onClick={() => onNavigate('contact')}
+              className={`font-label-caps-sm text-[11px] uppercase tracking-[0.2em] transition-colors py-1 cursor-pointer ${
+                currentPage === 'contact'
+                  ? 'text-[#D4AF37] font-semibold border-b border-[#D4AF37] pb-1'
+                  : 'text-[#EADFD3] hover:text-[#D4AF37]'
+              }`}
             >
               Əlaqə & Sifariş
             </button>
@@ -150,9 +154,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </button>
 
-            {/* User Profile / Concierge Quick Action */}
+            {/* Concierge Button */}
             <button
-              onClick={onOpenContact}
+              onClick={() => onNavigate('contact')}
               title="Florist Concierge ilə Əlaqə"
               className="w-8 h-8 rounded-full bg-gradient-to-br from-[#89182C] to-[#4A1E29] border border-[#D4AF37]/40 flex items-center justify-center shrink-0 shadow-md cursor-pointer hover:border-[#D4AF37] transition-colors"
             >
@@ -162,7 +166,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Mobile Hamburger Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden text-[#EADFD3] hover:text-[#D4AF37] p-1 flex items-center justify-center"
+              className="xl:hidden text-[#EADFD3] hover:text-[#D4AF37] p-1 flex items-center justify-center cursor-pointer"
               aria-label="Menyu"
             >
               <span className="material-symbols-outlined text-[24px]">
@@ -181,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onNavigate('home');
               setMobileMenuOpen(false);
             }}
-            className={`text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] ${
+            className={`text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] cursor-pointer ${
               currentPage === 'home' ? 'text-[#D4AF37] font-semibold' : 'text-[#EADFD3]'
             }`}
           >
@@ -192,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onNavigate('catalog');
               setMobileMenuOpen(false);
             }}
-            className={`text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] ${
+            className={`text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] cursor-pointer ${
               currentPage === 'catalog' ? 'text-[#D4AF37] font-semibold' : 'text-[#EADFD3]'
             }`}
           >
@@ -203,25 +207,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               onNavigate('catalog');
               setMobileMenuOpen(false);
             }}
-            className="text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] text-[#EADFD3]"
+            className="text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] text-[#EADFD3] cursor-pointer"
           >
             Gəlin Buketləri
           </button>
           <button
             onClick={() => {
-              onOpenAbout();
+              onNavigate('about');
               setMobileMenuOpen(false);
             }}
-            className="text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] text-[#EADFD3]"
+            className={`text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] cursor-pointer ${
+              currentPage === 'about' ? 'text-[#D4AF37] font-semibold' : 'text-[#EADFD3]'
+            }`}
           >
             Haqqımızda
           </button>
           <button
             onClick={() => {
-              onOpenContact();
+              onNavigate('contact');
               setMobileMenuOpen(false);
             }}
-            className="text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] text-[#EADFD3]"
+            className={`text-left py-2 font-label-caps-sm text-[12px] uppercase tracking-[0.2em] cursor-pointer ${
+              currentPage === 'contact' ? 'text-[#D4AF37] font-semibold' : 'text-[#EADFD3]'
+            }`}
           >
             Əlaqə & Sifariş
           </button>

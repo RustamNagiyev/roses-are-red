@@ -2,14 +2,12 @@ import React from 'react';
 
 interface FooterProps {
   onNavigateCategory?: (categoryKey: string) => void;
-  onOpenAbout?: () => void;
-  onOpenContact?: () => void;
+  onNavigatePage?: (page: 'home' | 'catalog' | 'about' | 'contact') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   onNavigateCategory,
-  onOpenAbout,
-  onOpenContact,
+  onNavigatePage,
 }) => {
   return (
     <footer className="w-full bg-[#15080B] text-[#FDF9F3] pt-16 pb-8 border-t border-[#D4AF37]/20">
@@ -17,13 +15,16 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-[#D4AF37]/20">
           {/* Column 1: Brand */}
           <div className="flex flex-col space-y-4">
-            <div className="flex items-center gap-2.5">
+            <div 
+              onClick={() => onNavigatePage && onNavigatePage('home')}
+              className="flex items-center gap-2.5 cursor-pointer"
+            >
               <span className="material-symbols-outlined text-[#D4AF37] text-[22px]">filter_vintage</span>
               <span className="font-headline-sm text-lg sm:text-xl tracking-widest text-[#FDF9F3] uppercase font-medium">
                 Roses Are Red
               </span>
             </div>
-            <p className="font-body-sm text-[13px] text-[#C7B9B0] leading-relaxed">
+            <p className="font-body-sm text-[13px] text-[#C7B9B0] leading-relaxed font-light">
               Bakıda yüksək floristika sənəti. Təbiətin zərifliyini və zövqlü kompozisiyaları hər bir özəl anınız üçün sənət əsərinə çeviririk.
             </p>
             <div className="pt-2">
@@ -103,34 +104,49 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2.5 font-body-sm text-[13px] text-[#C7B9B0]">
               <li>
-                <button onClick={onOpenAbout} className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left">
+                <button 
+                  onClick={() => onNavigatePage && onNavigatePage('about')} 
+                  className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left"
+                >
                   Sifariş və Rezervasiya Qaydaları
                 </button>
               </li>
               <li>
-                <button onClick={onOpenAbout} className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left">
+                <button 
+                  onClick={() => onNavigatePage && onNavigatePage('about')} 
+                  className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left"
+                >
                   Çatdırılma və Təhlükəsiz Ödəniş
                 </button>
               </li>
               <li>
-                <button onClick={onOpenContact} className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left">
+                <button 
+                  onClick={() => onNavigatePage && onNavigatePage('contact')} 
+                  className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left"
+                >
                   24/7 Concierge Dəstəyi
                 </button>
               </li>
               <li>
-                <button onClick={onOpenAbout} className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left">
+                <button 
+                  onClick={() => onNavigatePage && onNavigatePage('about')} 
+                  className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left"
+                >
                   Məxfilik və Gizlilik Siyasəti
                 </button>
               </li>
               <li>
-                <button onClick={onOpenAbout} className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left">
+                <button 
+                  onClick={() => onNavigatePage && onNavigatePage('contact')} 
+                  className="hover:text-[#FDF9F3] transition-colors cursor-pointer text-left"
+                >
                   Tez-tez Verilən Suallar
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Butik & Əlaqə */}
+          {/* Column 4: Butik & Əlaqə with 0505300369 */}
           <div className="flex flex-col space-y-4">
             <h4 className="font-label-caps-lg text-[12px] uppercase text-[#D4AF37] tracking-[0.2em] font-semibold">
               Butik & Əlaqə

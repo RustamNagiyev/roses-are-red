@@ -32,27 +32,31 @@
 }
 
 .font-display-hero {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bodoni Moda', 'Playfair Display', serif;
 }
 
 .font-headline-lg {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bodoni Moda', 'Playfair Display', serif;
 }
 
 .font-headline-md {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bodoni Moda', 'Playfair Display', serif;
 }
 
 .font-headline-sm {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bodoni Moda', 'Playfair Display', serif;
 }
 
 .font-title-editorial {
-  font-family: 'Playfair Display', serif;
+  font-family: 'EB Garamond', 'Playfair Display', serif;
 }
 
 .font-price-editorial {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Bodoni Moda', 'Playfair Display', serif;
+}
+
+.font-bodoni {
+  font-family: 'Bodoni Moda', serif;
 }
 
 .font-body-lg,

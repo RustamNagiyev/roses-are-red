@@ -12,14 +12,14 @@ import { ConciergeBanner } from './components/ConciergeBanner';
 import { Footer } from './components/Footer';
 import { CatalogPage } from './components/CatalogPage';
 import { ProductDetailPage } from './components/ProductDetailPage';
+import { AboutPage } from './components/AboutPage';
+import { ContactPage } from './components/ContactPage';
 import { CartDrawer } from './components/CartDrawer';
 import { WishlistDrawer } from './components/WishlistDrawer';
 import { SearchModal } from './components/SearchModal';
-import { AboutModal } from './components/AboutModal';
-import { ContactModal } from './components/ContactModal';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'catalog' | 'product'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'catalog' | 'product' | 'about' | 'contact'>('home');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedProduct, setSelectedProduct] = useState<Product>(PRODUCTS[0]);
 
@@ -44,8 +44,6 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
 
   // Toast notification
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -177,8 +175,6 @@ export default function App() {
         onOpenCart={() => setCartOpen(true)}
         onOpenWishlist={() => setWishlistOpen(true)}
         onOpenSearch={() => setSearchOpen(true)}
-        onOpenAbout={() => setAboutOpen(true)}
-        onOpenContact={() => setContactOpen(true)}
       />
 
       {/* Main Viewport Routing */}
@@ -190,7 +186,7 @@ export default function App() {
                 setSelectedCategory('all');
                 setCurrentPage('catalog');
               }}
-              onCustomOrder={() => setContactOpen(true)}
+              onCustomOrder={() => setCurrentPage('contact')}
             />
             <BrandManifesto />
             <CategoriesRow onSelectCategory={handleSelectCategoryFromHome} />
@@ -235,6 +231,18 @@ export default function App() {
             onAddComplementary={handleAddComplementary}
           />
         )}
+
+        {currentPage === 'about' && (
+          <AboutPage
+            onNavigateCatalog={() => {
+              setSelectedCategory('all');
+              setCurrentPage('catalog');
+            }}
+            onNavigateContact={() => setCurrentPage('contact')}
+          />
+        )}
+
+        {currentPage === 'contact' && <ContactPage />}
       </main>
 
       {/* Footer */}
@@ -243,8 +251,10 @@ export default function App() {
           setSelectedCategory(key);
           setCurrentPage('catalog');
         }}
-        onOpenAbout={() => setAboutOpen(true)}
-        onOpenContact={() => setContactOpen(true)}
+        onNavigatePage={(page) => {
+          if (page === 'catalog') setSelectedCategory('all');
+          setCurrentPage(page);
+        }}
       />
 
       {/* Floating WhatsApp Quick Action Button with 0505300369 */}
@@ -253,7 +263,7 @@ export default function App() {
         target="_blank"
         rel="noopener noreferrer"
         title="WhatsApp Concierge: 050 530 03 69"
-        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-[#89182C] to-[#2D141A] border border-[#D4AF37] text-[#FDF9F3] shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group"
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-[#89182C] to-[#2D141A] border border-[#D4AF37] text-[#FDF9F3] shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group cursor-pointer"
       >
         <span className="material-symbols-outlined text-[28px] text-[#D4AF37] group-hover:text-[#FDF9F3] transition-colors">
           chat
@@ -290,20 +300,6 @@ export default function App() {
         onClose={() => setSearchOpen(false)}
         products={PRODUCTS}
         onSelectProduct={handleSelectProduct}
-      />
-
-      <AboutModal
-        isOpen={aboutOpen}
-        onClose={() => setAboutOpen(false)}
-        onExploreCatalog={() => {
-          setSelectedCategory('all');
-          setCurrentPage('catalog');
-        }}
-      />
-
-      <ContactModal
-        isOpen={contactOpen}
-        onClose={() => setContactOpen(false)}
       />
 
       {/* Toast Notification */}
